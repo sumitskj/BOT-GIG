@@ -1,0 +1,625 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "test",
+    "version": "6",
+    "intents": [
+      {
+        "name": "news",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "get latest tech news",
+          "latest news",
+          "news"
+        ],
+        "slots": []
+      },
+      {
+        "name": "cpp",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "test cpp"
+        ],
+        "slots": [
+          {
+            "name": "confirm",
+            "slotConstraint": "Required",
+            "slotType": "confirm",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Click Proceed button to start test."
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"http://uwm.edu/studentinvolvement/wp-content/uploads/sites/260/2015/05/start.png\",\"subTitle\":\"Start test\",\"title\":\"Click to proceed\",\"buttons\":[{\"text\":\"Proceed\",\"value\":\"yes\"}]}]}"
+            },
+            "priority": 3,
+            "sampleUtterances": []
+          },
+          {
+            "name": "email",
+            "slotConstraint": "Required",
+            "slotType": "email",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Enter your email address?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          },
+          {
+            "name": "name",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Person",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "que_a",
+            "slotConstraint": "Required",
+            "slotType": "question_a",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is meant by multiple inheritance? (a)Deriving a base class from derived class (b)Deriving a derived class from base class (c)Deriving a derived class from more than one base class (d)None of the mentioned"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://1.bp.blogspot.com/-dvW4dgpqgCg/WBQMMlRb5oI/AAAAAAAAALA/l1allsq6B2c3uDLuO9hI9XcfGry7_8G_wCEw/s1600/techn.jpg\",\"subTitle\":\"Choose the correct option\",\"title\":\"Question 1\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          },
+          {
+            "name": "que_b",
+            "slotConstraint": "Required",
+            "slotType": "question_b",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which of the following advantages we lose by using multiple inheritance? (a)Dynamic binding (b)Polymorphism (c)Both Dynamic binding &amp; Polymorphism (d)None of the mentioned"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"data:image/jpeg;base64,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\",\"subTitle\":\"Choose the correct option\",\"title\":\"Question 2\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 5,
+            "sampleUtterances": []
+          },
+          {
+            "name": "que_c",
+            "slotConstraint": "Required",
+            "slotType": "question_c",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What do vectors represent? (a)Static arrays (b)Dynamic arrays (c)Stacks (d)Queue"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://d30y9cdsu7xlg0.cloudfront.net/png/59945-200.png\",\"subTitle\":\"Choose the correct option\",\"title\":\"Question 3\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 6,
+            "sampleUtterances": []
+          },
+          {
+            "name": "que_d",
+            "slotConstraint": "Required",
+            "slotType": "question_d",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which class is used to design the base class? (a)abstract class (b)derived class (c)base class (d)none of the mentioned"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://ih0.redbubble.net/image.414188050.8983/poster%2C210x230%2Cf8f8f8-pad%2C210x230%2Cf8f8f8.lite-1u1.jpg\",\"subTitle\":\"Choose the correct answer\",\"title\":\"Question 4\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 7,
+            "sampleUtterances": []
+          },
+          {
+            "name": "que_e",
+            "slotConstraint": "Required",
+            "slotType": "question_e",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Where are standard C libraries defined in C++? (a)Container (b)std namespace (c)list (d)none"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"http://4.bp.blogspot.com/-nlRR6ReEx3g/Vdw3X7j0R2I/AAAAAAAAANA/j1DQZUqupBA/s640/1417176hacker3780x390.jpg\",\"subTitle\":\"Choose the correct answer\",\"title\":\"Question 5\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 8,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "java",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "test java"
+        ],
+        "slots": [
+          {
+            "name": "con",
+            "slotConstraint": "Required",
+            "slotType": "confirm",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Click proceed or type yes to start test."
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"http://uwm.edu/studentinvolvement/wp-content/uploads/sites/260/2015/05/start.png\",\"subTitle\":\"start test\",\"title\":\"Click to proceed\",\"buttons\":[{\"text\":\"proceed\",\"value\":\"yes\"}]}]}"
+            },
+            "priority": 4,
+            "sampleUtterances": []
+          },
+          {
+            "name": "eid",
+            "slotConstraint": "Required",
+            "slotType": "email",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Enter your email id?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          },
+          {
+            "name": "name",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.Person",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is your name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qu_a",
+            "slotConstraint": "Required",
+            "slotType": "question_a",
+            "slotTypeVersion": "2",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": " Which of these keywords is used to make a class? (a)class (b)struct (c)int (d)none"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"http://4.bp.blogspot.com/-nlRR6ReEx3g/Vdw3X7j0R2I/AAAAAAAAANA/j1DQZUqupBA/s640/1417176hacker3780x390.jpg\",\"subTitle\":\"Choose correct answer\",\"title\":\"Question 1\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 5,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qu_b",
+            "slotConstraint": "Required",
+            "slotType": "question_b",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which of these operators is used to allocate memory for an object? (a)malloc (b)alloc (c)new (d)give"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlNKzHLlYH9x2awvgMFZFHX0TuRrSbIj5vEjVA8bgwMAsLHXSQ3g\",\"subTitle\":\"Choose the correct answer\",\"title\":\"Questiom 2\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 6,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qu_c",
+            "slotConstraint": "Required",
+            "slotType": "question_c",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": " Which of these keyword can be used in subclass to call the constructor of superclass (a)super (b)extend (c)extents (d)final"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://ih0.redbubble.net/image.414188050.8983/poster%2C210x230%2Cf8f8f8-pad%2C210x230%2Cf8f8f8.lite-1u1.jpg\",\"subTitle\":\"Choose the correct answer.\",\"title\":\"Question 3\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 7,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qu_d",
+            "slotConstraint": "Required",
+            "slotType": "question_d",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which of these keywords can be used to prevent Method overriding? (a)static (b)constant (c)protected (d)final"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAPMAAAAJDU0NWFjZWM4LWEwMDAtNDBkNS1hMGJlLTRhMjAxOTBlYjU2MA.jpg\",\"subTitle\":\"Choose the correct answer.\",\"title\":\"Question 4\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 8,
+            "sampleUtterances": []
+          },
+          {
+            "name": "qu_e",
+            "slotConstraint": "Required",
+            "slotType": "question_e",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which of these is supported by method overriding in Java? (a)Abstraction (b)Encapsulation (c)Polymorphism (d)None"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://media.istockphoto.com/photos/software-developers-picture-id621272078?k=6&m=621272078&s=612x612&w=0&h=H09nCRgrDQ4Tgp69022U-iW2Y1gyrLeBNYzJm58bPTw=\",\"subTitle\":\"Choose the correct option\",\"title\":\"Question 5\",\"buttons\":[{\"text\":\"a\",\"value\":\"a\"},{\"text\":\"b\",\"value\":\"b\"},{\"text\":\"c\",\"value\":\"c\"},{\"text\":\"d\",\"value\":\"d\"}]}]}"
+            },
+            "priority": 9,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "Intro",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "help me",
+          "help",
+          "what can you do",
+          "what services you offer",
+          "tell about yourself"
+        ],
+        "slots": []
+      },
+      {
+        "name": "cpp_tut",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "cpp skills",
+          "enhance cpp skills",
+          "help me in cpp",
+          "tutorials for cpp"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Admin",
+        "version": "15",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "Show me my score",
+          "details",
+          "score",
+          "Show me my previous score"
+        ],
+        "slots": [
+          {
+            "name": "id",
+            "slotConstraint": "Required",
+            "slotType": "id",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Give your unique test id."
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+            },
+            "priority": 2,
+            "sampleUtterances": []
+          }
+        ]
+      },
+      {
+        "name": "java_tut",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "java tutorials",
+          "help me in java",
+          "enhance my java skills",
+          "java skills"
+        ],
+        "slots": []
+      },
+      {
+        "name": "python_tut",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "CodeHook",
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:513284067380:function:exam",
+            "messageVersion": "1.0"
+          }
+        },
+        "sampleUtterances": [
+          "python skills",
+          "enhance my python skills",
+          "python tutorials",
+          "help me in python"
+        ],
+        "slots": []
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "confirm",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "no",
+            "synonyms": []
+          },
+          {
+            "value": "yes",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "question_c",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "a",
+            "synonyms": []
+          },
+          {
+            "value": "b",
+            "synonyms": []
+          },
+          {
+            "value": "c",
+            "synonyms": []
+          },
+          {
+            "value": "d",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "question_d",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "a",
+            "synonyms": []
+          },
+          {
+            "value": "b",
+            "synonyms": []
+          },
+          {
+            "value": "c",
+            "synonyms": []
+          },
+          {
+            "value": "d",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "description": "Options",
+        "name": "question_a",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "a"
+          },
+          {
+            "value": "b"
+          },
+          {
+            "value": "c"
+          },
+          {
+            "value": "d"
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "question_b",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "a",
+            "synonyms": []
+          },
+          {
+            "value": "b",
+            "synonyms": []
+          },
+          {
+            "value": "c",
+            "synonyms": []
+          },
+          {
+            "value": "d",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "id",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "169118fa-33be-490a-b1ec-7d9776c83de2",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "email",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "bhushansainidss.1@gmail.com"
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "question_e",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "a",
+            "synonyms": []
+          },
+          {
+            "value": "b",
+            "synonyms": []
+          },
+          {
+            "value": "c",
+            "synonyms": []
+          },
+          {
+            "value": "d",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      }
+    ],
+    "voiceId": "Matthew",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 60,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    }
+  }
+}

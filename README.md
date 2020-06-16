@@ -1,6 +1,7 @@
 # BOT-GIG
 A EDUCATIONAL CHATBOT WHICH CAN HOST TESTS AND CAN GIVE YOU REFERNCES TO THE TUTORIALS
-                 
+
+App URL - https://bot-gig.herokuapp.com/
 
 It is an interactive eaducational purpose chatbot made by using AWS Lex. It has been coded in python 2.7
 
